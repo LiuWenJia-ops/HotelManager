@@ -37,13 +37,6 @@ public class UnsubscribeServlet extends HttpServlet {
         int id = json.get("order_id").getAsInt();
         boolean result = CustomerDao.Unsubscribe(id);
         resp.sendRedirect("http://127.0.0.1:3000/homepage.html");
-//        if (list != null) {
-//            String customerInfoStr = Utils.attachCodeAsJson(list);
-//            Utils.sendJsonResp(resp, customerInfoStr);
-//        }
-//        else {
-//            System.err.println("error");
-////            Utils.sendJsonFailure(resp, 0);
-//        }
+
     }
 }

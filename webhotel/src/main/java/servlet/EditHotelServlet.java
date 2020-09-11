@@ -46,6 +46,7 @@ public class EditHotelServlet extends HttpServlet {
         }
         GeneralManagerDao.updateHotel(
                 Integer.valueOf(add_info.hotelmsg.hotel_id),
+                add_info.hotelmsg.hotel_name,
                 add_info.hotelmsg.area,
                 add_info.hotelmsg.address
         );

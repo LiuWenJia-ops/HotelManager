@@ -35,6 +35,7 @@ public class AddHotelServlet extends HttpServlet {
         super.doGet(req, resp);
     }
 
+    //新增酒店
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("Access-Control-Allow-Origin", "*");
@@ -46,6 +47,7 @@ public class AddHotelServlet extends HttpServlet {
         }
         GeneralManagerDao.addHotel(
                 Integer.valueOf(add_info.hotelmsg.hotel_id),
+                add_info.hotelmsg.hotel_name,
                 add_info.hotelmsg.area,
                 add_info.hotelmsg.address
         );

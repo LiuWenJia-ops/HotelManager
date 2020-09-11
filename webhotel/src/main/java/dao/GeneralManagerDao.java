@@ -22,7 +22,7 @@ public class GeneralManagerDao {
 			stmt = con.createStatement();
 			res = stmt.executeQuery(String.format("select * from hotel"));
 			while (res.next()) {
-				eh=new EachHotel_NoIncome(res.getString(1),res.getString(2),res.getString(3));
+				eh=new EachHotel_NoIncome(res.getString("hotel_id"),res.getString("hotel_name"),res.getString("area"),res.getString("address"));
 				hotel_list.add(eh);
 			}
 			Conn.close(con, stmt, res);
@@ -35,7 +35,7 @@ public class GeneralManagerDao {
 	}
 
 	// 添加分店，若id已存在则弹出SQLException
-	public static void addHotel(int hotelId, String hotelArea, String hotelAddress) {
+	public static void addHotel(int hotelId, String hotel_name,String hotelArea, String hotelAddress) {
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet res = null;
@@ -43,7 +43,7 @@ public class GeneralManagerDao {
 			con = Conn.getConnection();
 			stmt = con.createStatement();
 			stmt.executeUpdate(
-					String.format("insert into hotel values(%d,'%s','%s')", hotelId, hotelArea, hotelAddress));
+					String.format("insert into hotel values(%d,'%s','%s','%s')", hotelId,hotel_name, hotelArea, hotelAddress));
 			Conn.close(con, stmt, res);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,15 +52,15 @@ public class GeneralManagerDao {
 	}
 
 	// 更新分店信息，若不存在则什么也不做
-	public static void updateHotel(int hotelId, String hotelArea, String hotelAddress) {
+	public static void updateHotel(int hotelId, String hotelName,String hotelArea, String hotelAddress) {
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet res = null;
 		try {
 			con = Conn.getConnection();
 			stmt = con.createStatement();
-			stmt.executeUpdate(String.format("update hotel set hotel_area='%s',address='%s' where hotel_id=%d",
-					hotelArea, hotelAddress, hotelId));
+			stmt.executeUpdate(String.format("update hotel set hotel_name='%s', hotel_area='%s',address='%s' where hotel_id=%d",
+					hotelName, hotelArea, hotelAddress, hotelId));
 			Conn.close(con, stmt, res);
 		} catch (Exception e) {
 			e.printStackTrace();
